@@ -474,21 +474,21 @@ STDDIPINFO(Dotron)
 
 static struct BurnDIPInfo DotroneDIPList[]=
 {
-	{0x0f, 0xff, 0xff, 0x00, NULL						},
-	{0x10, 0xff, 0xff, 0xff, NULL						},
-	{0x11, 0xff, 0xff, 0x80, NULL						},
+	{0x11, 0xff, 0xff, 0x00, NULL						},
+	{0x12, 0xff, 0xff, 0xff, NULL						},
+	{0x13, 0xff, 0xff, 0x80, NULL						},
 
 	{0   , 0xfe, 0   ,    2, "Cabinet"					},
-	{0x0f, 0x01, 0x80, 0x00, "Environmental"			},
-	{0x0f, 0x01, 0x80, 0x80, "Upright"					},
+	{0x11, 0x01, 0x80, 0x00, "Environmental"			},
+	{0x11, 0x01, 0x80, 0x80, "Upright"					},
 
 	{0   , 0xfe, 0   ,    2, "Coin Meters"				},
-	{0x10, 0x01, 0x01, 0x01, "1"						},
-	{0x10, 0x01, 0x01, 0x00, "2"						},
+	{0x12, 0x01, 0x01, 0x01, "1"						},
+	{0x12, 0x01, 0x01, 0x00, "2"						},
 
     {0   , 0xfe, 0   ,    2, "Service Mode"				},
-	{0x11, 0x01, 0x80, 0x80, "Off"						},
-	{0x11, 0x01, 0x80, 0x00, "On"						},
+	{0x13, 0x01, 0x80, 0x80, "Off"						},
+	{0x13, 0x01, 0x80, 0x00, "On"						},
 };
 
 STDDIPINFO(Dotrone)
@@ -1092,12 +1092,7 @@ static INT32 DrvInit(INT32 cpu_board)
 
 	DrvLoadRoms(false);
 
-	AllMem = NULL;
-	MemIndex();
-	INT32 nLen = MemEnd - (UINT8 *)0;
-	if ((AllMem = (UINT8 *)BurnMalloc(nLen)) == NULL) return 1;
-	memset(AllMem, 0, nLen);
-	MemIndex();
+	BurnAllocMemIndex();
 
 	memset (DrvNVRAM, 0xff, 0x800);
 
@@ -1179,7 +1174,7 @@ static INT32 DrvExit()
 
     BurnTrackballExit();
 
-	BurnFree(AllMem);
+	BurnFreeMemIndex();
 
 	nScreenFlip = 0;
 	sprite_config = 0;
@@ -1551,6 +1546,7 @@ static INT32 DrvFrame()
 
 	if (pBurnSoundOut) {
 		AY8910Render(pBurnSoundOut, nBurnSoundLen);
+		BurnSoundDCFilter();
         BurnSampleRender(pBurnSoundOut, nBurnSoundLen);
         if (has_squak) {
             midsat_update(pBurnSoundOut, nBurnSoundLen);
