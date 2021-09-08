@@ -43259,6 +43259,7 @@ struct BurnDriver BurnDrvmd_sweets = {
 	MegadriveGetZipName, md_sweetsRomInfo, md_sweetsRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
+};
 	
 static struct BurnRomInfo md_sweetsjamRomDesc[] = {
 	{ "sweets.bin", 0x442368, 0x8C7FB5B5, BRF_PRG | SEGA_MD_ROM_LOAD16_WORD_SWAP | SEGA_MD_ROM_OFFS_000000  },
@@ -43275,6 +43276,7 @@ struct BurnDriver BurnDrvmd_sweetsjam = {
 	MegadriveGetZipName, md_sweetsjamRomInfo, md_sweetsjamRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
 	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
 	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
+};
 
 // Abyssal Infants (HB)
 static struct BurnRomInfo md_abyssalRomDesc[] = {
