@@ -43243,6 +43243,39 @@ struct BurnDriver BurnDrvmd_sks3 = {
 
 // -- Homebrew additions below --
 
+// sweetsdigger - https://tboddy.itch.io/sweetsdigger
+static struct BurnRomInfo md_sweetsRomDesc[] = {
+	{ "sweets.bin", 0x442368, 0x69A34869, BRF_PRG | SEGA_MD_ROM_LOAD16_WORD_SWAP | SEGA_MD_ROM_OFFS_000000  },
+};
+
+STD_ROM_PICK(md_sweets)
+STD_ROM_FN(md_sweets)
+
+struct BurnDriver BurnDrvmd_sweets = {
+	"md_sweets", NULL, NULL, NULL, "2021",
+	"Sweetsdigger (HB)\0", NULL, "tboddy", "Sega Megadrive",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_16BIT_ONLY, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
+	MegadriveGetZipName, md_sweetsRomInfo, md_sweetsRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
+	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
+	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
+	
+static struct BurnRomInfo md_sweetsjamRomDesc[] = {
+	{ "sweets.bin", 0x442368, 0x8C7FB5B5, BRF_PRG | SEGA_MD_ROM_LOAD16_WORD_SWAP | SEGA_MD_ROM_OFFS_000000  },
+};
+
+STD_ROM_PICK(md_sweetsjam)
+STD_ROM_FN(md_sweetsjam)
+
+struct BurnDriver BurnDrvmd_sweetsjam = {
+	"md_sweetsjam", "md_sweets", NULL, NULL, "2021",
+	"Sweetsdigger (HB, Jam)\0", "Touhou Pride Game Jam 3 version.", "tboddy", "Sega Megadrive",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_16BIT_ONLY, 2, HARDWARE_SEGA_MEGADRIVE, GBF_MISC, 0,
+	MegadriveGetZipName, md_sweetsjamRomInfo, md_sweetsjamRomName, NULL, NULL, NULL, NULL, MegadriveInputInfo, MegadriveDIPInfo,
+	MegadriveInit, MegadriveExit, MegadriveFrame, MegadriveDraw, MegadriveScan,
+	&bMegadriveRecalcPalette, 0x100, 320, 224, 4, 3
+
 // Abyssal Infants (HB)
 static struct BurnRomInfo md_abyssalRomDesc[] = {
 	{ "Abyssal Infants (2021)(kakoeimon).bin", 845624, 0xb893bea7, BRF_PRG | SEGA_MD_ROM_LOAD16_WORD_SWAP | SEGA_MD_ROM_OFFS_000000  },
